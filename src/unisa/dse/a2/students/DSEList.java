@@ -234,7 +234,23 @@ public class DSEList implements List {
 
 	@Override
 	public boolean equals(Object other) {
-		return true;
+		if (this == other) return true;
+		if (other == null || !(other instanceof DSEList)) return false;
+		
+		DSEList otherList = (DSEList) other;
+		
+		Node currA = this.head;
+		Node currB = otherList.head;
+		
+		while (currA != null && currB != null) {
+			if (!currA.getString().equals(currB.getString())) {
+				return false;
+			}
+			currA = currA.next;
+			currB = currB.next;
+		}
+		
+		return currA == null && currB == null;
 	}
 	
 }
