@@ -71,6 +71,20 @@ public class DSEList implements List {
 
 	//add the parameter String at of the end of the list
 	public boolean add(String obj) {
+		if (obj == null) return false;
+		
+		Node newNode = new Node(null, null, obj);
+		
+		if (head == null) {
+			head = newNode;
+			tail = newNode;
+		} else {
+			tail.next = newNode;
+			newNode.prev = tail;
+			tail = newNode;
+		}
+		
+		return true;
 	}
 
 	//add String at parameter's index
