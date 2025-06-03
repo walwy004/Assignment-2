@@ -137,6 +137,20 @@ public class DSEListGeneric<T> implements ListGeneric<T> {
 	//Take each element of the list a writes them to a string 
 	@Override
 	public String toString() {
+		if (head == null) return "";
+		
+		StringBuilder sb = new StringBuilder();
+		NodeGeneric<T> current = head;
+		
+		while (current != null) {
+			sb.append(current.get());
+			if (current.next != null) {
+				sb.append(" ");
+			}
+			current = current.next;
+		}
+		
+		return sb.toString();
 	}
 
 	//add the parameter item at of the end of the list
