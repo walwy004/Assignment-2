@@ -50,6 +50,20 @@ public class DSEList implements List {
 
 	//returns the index of the String parameter 
 	public int indexOf(String obj) {
+		if (obj == null) return -1;
+		
+		Node current = head;
+		int index = 0;
+		
+		while (current != null) {
+			if (obj.equals(current.getString())) {
+				return index;
+			}
+			current = current.next;
+			index++;
+		}
+		
+		return -1; // not found
 	}
 	
 	//returns String at parameter's index
