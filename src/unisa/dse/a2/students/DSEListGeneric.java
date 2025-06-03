@@ -172,7 +172,51 @@ public class DSEListGeneric<T> implements ListGeneric<T> {
 	}
 
 	//add item at parameter's index
-	public boolean add(int index, Object obj) {
+	public boolean add(int index, T obj) {
+		if (obj == null || index < 0 || index > size()) {
+			return false;
+		}
+		
+		NodeGeneric<T> newNode = new NodeGeneric<>(null, null, obj);
+		
+		// Case 1: Insert at front
+		if (index == 0) {
+			if (head == null) {
+				head = newNode;
+				tail = newNode;
+			} else {
+				newNode.next = head;
+				head.prev = newNode;
+				head = newNode;
+			}
+			
+			return true;
+		}
+		
+		// Case 2: Insert at end
+		if (index == size()) {
+			return add(obj);	// use existing add method
+		}
+		
+		// Case 3: Insert in the middle
+		NodeGeneric<T> current = head;
+		int count = 0;
+		
+		while (count < index - 1) {
+			current = current.next;
+			count++;
+		}
+		
+		NodeGeneric<T> after = current.next;
+		
+		current.next = newNode;
+		newNode.prev = current;
+		newNode.next = after;
+		if (after != null) {
+			after.prev = newNode;
+		}
+		
+		return true;
 	}
 
 	//searches list for parameter's String return true if found
