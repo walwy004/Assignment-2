@@ -83,7 +83,21 @@ public class DSEListGeneric<T> implements ListGeneric<T> {
 	}
 
 	//returns the index of the String parameter 
-	public int indexOf(String obj) {
+	public int indexOf(T obj) {
+		if (obj == null) return -1;
+		
+		NodeGeneric<T> current = head;
+		int index = 0;
+		
+		while (current != null) {
+			if (obj.equals(current.get())) {
+				return index;
+			}
+			current = current.next;
+			index++;
+		}
+		
+		return -1; // not found
 	}
 	
 	//returns item at parameter's index
