@@ -23,6 +23,24 @@ public class DSEList implements List {
 	
 	//Takes a list then adds each element into a new list
 	public DSEList(DSEList other) { // Copy constructor. 
+		if (other.head == null) {
+			head = null;
+			tail = null;
+			return;
+		}
+		
+		Node current = other.head;
+		head = new Node(null, null, current.getString());
+		Node newCurrent = head;
+		
+		while (current.next != null) {
+			current = current.next;
+			Node newNode = new Node(null, newCurrent, current.getString());
+			newCurrent.next = newNode;
+			newCurrent = newNode;
+		}
+		
+		tail = newCurrent;
 	}
 
 	//remove the String at the parameter's index
