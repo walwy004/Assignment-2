@@ -45,7 +45,41 @@ public class DSEList implements List {
 
 	//remove the String at the parameter's index
 	public String remove(int index) {
-
+		if (head == null || index < 0 || index >= size()) {
+			return null;
+		}
+		
+		Node current = head;
+		int count = 0;
+		
+		while (count < index) {
+			current = current.next;
+			count++;
+		}
+		
+		// Removing head
+		if (current == head) {
+			head = head.next;
+			if (head != null) {
+				head.prev = null;
+			} else {
+				tail = null;	// list is now empty
+			}
+		}
+		// Removing tail
+		else if (current == tail) {
+			tail = tail.prev;
+			if (tail != null) {
+				tail.next = null;
+			}
+		}
+		// Removing in the middle
+		else {
+			current.prev.next = current.next;
+			current.next.prev = current.prev;
+		}
+		
+		return current.getString();
 	}
 
 	//returns the index of the String parameter 
