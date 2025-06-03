@@ -281,7 +281,23 @@ public class DSEListGeneric<T> implements ListGeneric<T> {
 
 	@Override
 	public boolean equals(Object other) {
-		return true;
+		if (this == other) return true;
+		if (other == null || !(other instanceof DSEListGeneric)) return false;
+		
+		DSEListGeneric<?> otherList = (DSEListGeneric<?>) other;
+		
+		NodeGeneric<T> currA = this.head;
+		NodeGeneric<?> currB = otherList.head;
+		
+		while (currA != null && currB != null) {
+			if (!currA.get().equals(currB.get())) {
+				return false;
+			}
+			currA = currA.next;
+			currB = currB.next;
+		}
+		
+		return currA == null && currB == null;
 	}
 	
 }
