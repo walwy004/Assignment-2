@@ -115,7 +115,7 @@ public class DSEList implements List {
 			count++;
 		}
 		
-		return null; // index out of bounds
+		return null;	// index out of bounds
 	}
 
 	//checks if there is a list
@@ -221,6 +221,18 @@ public class DSEList implements List {
 
 	//searches list for parameter's String return true if found
 	public boolean contains(String obj) {
+		if (obj == null) return false;
+		
+		Node current = head;
+		
+		while (current != null) {
+			if (obj.equals(current.getString())) {
+				return true;
+			}
+			current = current.next;
+		}
+		
+		return false;
 	}
 
 	//removes the parameter's String form the list
