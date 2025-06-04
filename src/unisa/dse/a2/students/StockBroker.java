@@ -76,6 +76,7 @@ public class StockBroker {
 	 */
 	public Trade getNextTrade()
 	{
+		return pendingTrades.poll();	// returns and removes the highest priority trade
 	}
 	
 	/**
@@ -83,6 +84,7 @@ public class StockBroker {
 	 */
 	public int getPendingTradeCount()
 	{
+		return pendingTrades.size();
 	}
 
 	/**
