@@ -50,6 +50,12 @@ public class SecuritiesExchange {
 	 */
 	public boolean addCompany(ListedCompany company)
 	{
+		if (company == null || companies.containsKey(company.getCode())) {
+			return false;
+		}
+		
+		companies.put(company.getCode(), company);
+		return true;
 	}
 
 	/**
