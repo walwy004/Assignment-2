@@ -296,7 +296,6 @@ public class DSEList implements List {
 			currA = currA.next;
 			currB = currB.next;
 		}
-		
 		return currA == null && currB == null;
 	}
 	
