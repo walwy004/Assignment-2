@@ -44,7 +44,15 @@ public class ListedCompany {
 	 * @param quantity
 	 * @return the price after adjustment
 	 */
-	public void processTrade(int quantity)
+	public int processTrade(int quantity)
 	{
+		int change = quantity / 100;
+		currentPrice += change;
+		
+		if (currentPrice < 1) {
+			currentPrice = 1;
+		}
+		
+		return currentPrice;
 	}
 }
