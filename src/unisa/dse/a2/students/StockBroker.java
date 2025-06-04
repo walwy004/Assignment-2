@@ -44,6 +44,7 @@ public class StockBroker {
 	 * @return
 	 */
 	public String getName() {
+		return name;
 	}
 	
 	/**
@@ -52,6 +53,7 @@ public class StockBroker {
 	 */
 	public StockBroker(String name)
 	{
+		this.name = name;
 	}
 	
 	/**
@@ -61,6 +63,11 @@ public class StockBroker {
 	 */
 	public boolean placeOrder(Trade order)
 	{
+		if (order == null || pendingTrades.contains(order)) {
+			return false;
+		}
+		
+		return pendingTrades.add(order);
 	}
 	
 	/**
