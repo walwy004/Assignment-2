@@ -86,8 +86,12 @@ public class Trade implements Comparable<Trade> {
 	 *  
 	 * @return The ordering priority of the trade
 	 */
-	public int compareTo(Trade t)
+	public int compareTo(Trade other)
 	{
+		if (this.shareQuantity != other.shareQuantity) {
+			return Integer.compare(other.shareQuantity, this.shareQuantity); // higher first
+		}
+		return Long.compare(this.created, other.created); // earlier first
 	}
 	
 
