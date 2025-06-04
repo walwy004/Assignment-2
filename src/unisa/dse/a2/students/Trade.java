@@ -12,8 +12,8 @@ public class Trade implements Comparable<Trade> {
 	/**
 	 * @return Track the moment in time this Trade was created
 	 */
-	public void getCreated()
-	{
+	public long getCreated(){
+		return created;
 	}
 	
 	public String listedCompanyCode;
@@ -21,7 +21,8 @@ public class Trade implements Comparable<Trade> {
 	/**
 	 * @return The company's code
 	 */
-	public void getCompanyCode() {
+	public String getCompanyCode() {
+		return listedCompanyCode;
 	}
 	
 	private int shareQuantity;
@@ -29,7 +30,8 @@ public class Trade implements Comparable<Trade> {
 	/**
 	 * @return The quantity of shares to trade
 	 */
-	public void getShareQuantity() {
+	public int getShareQuantity() {
+		return shareQuantity;
 	}
 
 	private StockBroker broker;
@@ -37,7 +39,8 @@ public class Trade implements Comparable<Trade> {
 	/**
 	 * @return The broker associated with this trade
 	 */
-	public void getStockBroker() {
+	public StockBroker getStockBroker() {
+		return broker;
 	}
 
 
@@ -61,6 +64,10 @@ public class Trade implements Comparable<Trade> {
 	 */
 	public Trade(StockBroker broker, String listedCompanyCode, int shareQuantity)
 	{
+		this.broker = broker;
+		this.listedCompanyCode = listedCompanyCode;
+		this.shareQuantity = shareQuantity;
+		
 		created = System.nanoTime(); //do not change this
 		tradeId = System.nanoTime(); //do not change this
 		try { Thread.sleep(100); } catch (Exception x) {}
