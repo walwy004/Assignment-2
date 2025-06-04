@@ -40,7 +40,7 @@ public class SecuritiesExchange {
 		this.name = name;
 		this.brokers = new DSEListGeneric<>();
 		this.announcements = new DSEListGeneric<>();
-		this.companies = new Hashmap<>();
+		this.companies = new HashMap<>();
 	}
 	
 	/**
@@ -58,6 +58,11 @@ public class SecuritiesExchange {
 	 */
 	public boolean addBroker(StockBroker broker)
 	{
+		if (broker == null || brokers.contains(broker)) {
+			return false;
+		}
+		
+		return brokers.add(broker);
 	}
 	
 	/**
