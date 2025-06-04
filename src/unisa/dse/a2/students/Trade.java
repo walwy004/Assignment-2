@@ -88,10 +88,20 @@ public class Trade implements Comparable<Trade> {
 	 */
 	public int compareTo(Trade other)
 	{
+		boolean thisWatched = broker.getWatchlist().contains(this.listedCompanyCode);
+		boolean otherWatched = other.broker.getWatchlist().contains(other.listedCompanyCode);
+		
+		// If only one is on a watchlist, prioritise it
+		if (thisWatched && !otherWatched) return 1;
+		if (!thisWatched && otherWatched) return -1;
+		
+		// Then compare by share quantity (descending)
 		if (this.shareQuantity != other.shareQuantity) {
-			return Integer.compare(other.shareQuantity, this.shareQuantity); // higher first
+			return Integer.compare(other.shareQuantity, this.shareQuantity);
 		}
-		return Long.compare(this.created, other.created); // earlier first
+		
+		// Finally, fallback to creation time (ascending)
+		return Long.compare(this.created, other.created);
 	}
 	
 
