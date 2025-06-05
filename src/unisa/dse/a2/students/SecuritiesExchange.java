@@ -1,6 +1,9 @@
 package unisa.dse.a2.students;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 
 import unisa.dse.a2.interfaces.ListGeneric;
@@ -87,9 +90,10 @@ public class SecuritiesExchange {
 	 * @return The number of successful trades completed across all brokers
 	 * @throws UntradedCompanyException when traded company is not listed on this exchange
 	 */
-	public int processTradeRound()
-	{
+	public int processTradeRound() throws UntradedCompanyException {
+		
 	}
+
 	
 	public int runCommandLineExchange(Scanner sc)
 	{

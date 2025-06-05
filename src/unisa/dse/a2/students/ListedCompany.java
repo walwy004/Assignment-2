@@ -52,7 +52,7 @@ public class ListedCompany {
 		if (currentPrice < 1) {
 			currentPrice = 1;
 		}
-		
+
 		return currentPrice;
 	}
 }
