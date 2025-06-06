@@ -1,10 +1,6 @@
 package unisa.dse.a2.students;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Scanner;
 
 import unisa.dse.a2.interfaces.ListGeneric;
 
@@ -91,12 +87,41 @@ public class SecuritiesExchange {
 	 * @throws UntradedCompanyException when traded company is not listed on this exchange
 	 */
 	public int processTradeRound() throws UntradedCompanyException {
-		
+	    int tradesCompleted = 0;
+
+	    for (int i = 0; i < brokers.size(); i++) {
+	        StockBroker broker = brokers.get(i);
+	        Trade trade = broker.getNextTrade();
+
+	        if (trade == null) {
+	            continue;
+	        };
+
+	        String companyCode = trade.getCompanyCode();
+	        ListedCompany company = companies.get(companyCode);
+
+	        if (company == null) {
+	            throw new UntradedCompanyException(companyCode);
+	        }
+
+	        int priceBefore = company.getCurrentPrice();
+	        company.processTrade(trade.getShareQuantity());
+
+	        String announcement = "Trade: " + trade.getShareQuantity() +
+	                              " " + companyCode + " @ " + priceBefore +
+	                              " via " + broker.getName();
+
+	        announcements.add(announcement);
+	        tradesCompleted++;
+	    }
+
+	    return tradesCompleted;
 	}
 
+
 	
-	public int runCommandLineExchange(Scanner sc)
-	{
-		
-	}
+//	public int runCommandLineExchange(Scanner sc)
+//	{
+//		
+//	}
 }
