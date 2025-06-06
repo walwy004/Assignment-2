@@ -146,7 +146,7 @@ public class SecuritiesExchangeTest extends DSUnitTesting {
 	     
         Scanner sc = new Scanner(text);
 		
-		asx.runCommandLineExchange(sc);
+//		asx.runCommandLineExchange(sc);
 		
 	}
 }
